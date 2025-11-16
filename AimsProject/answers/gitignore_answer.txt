@@ -1,8 +1,24 @@
-Lý do thêm các đường dẫn vào .gitignore và Hậu quả khi không thêm:
-Các đường dẫn .settings, bin, .classpath, và .project nên được thêm vào file .gitignore vì chúng là các file và thư mục tự động sinh ra hoặc chỉ chứa cấu hình cục bộ của IDE Eclipse, không phải mã nguồn cốt lõi của dự án. Ví dụ, thư mục bin/ chứa các file đã biên dịch (.class), là output mà mỗi lập trình viên sẽ tự tạo ra trên máy của mình. Nếu không thêm chúng, repository sẽ bị chứa đầy các file rác và binaries làm tăng dung lượng một cách không cần thiết, đồng thời gây ra xung đột Git (Git conflicts) thường xuyên do sự khác biệt trong cấu hình IDE cá nhân, đặc biệt là trong các file như .classpath và .settings. Điều này có thể dẫn đến lỗi build trên máy tính của đồng đội khi họ clone dự án về.
+Tại sao những đường dẫn trên nên được thêm vào .gitignore (nếu không thêm 
+thì sao)?
+Việc này là cần thiết do để duy trì một Git lưu trữ mã nguồn, cốt lỗi, không cần push những thư mục đó. 
+Bin chứa các file biên dịch, output tự động sinh ra của mã nguồn. Các file còn lại cũng liên quan tới cấu hình,
+nên khuyến cáo không nên sử dụng hoặc push pull liên tục.
+Nếu như không thêm thì khi các thành viên dùng các bản IDE khác nhau, chỉnh sửa sẽ gây không hợp nhất được code.
+Tăng dung lượng Repo không cần thiết
+Lỗi build, các file classpath sẽ tạo tham chiếu không đúng trên máy người khác nếu họ clone về sử dụng, vì 
+những file cấu hình đó phụ thuộc vào máy người dùng
 
-Đường dẫn cần thêm khi sử dụng công cụ khác
-Nếu không sử dụng IDE Eclipse mà dùng các công cụ lập trình Java khác, bạn cần loại trừ các đường dẫn cấu hình tương ứng của các công cụ đó. Cụ thể, nếu sử dụng IntelliJ IDEA, bạn cần thêm folder .idea/ (chứa cấu hình chính) và các file *.iml (file mô-đun), cùng với folder output out/ hoặc target/. Đối với VSCode, folder cấu hình workspace .vscode/ là thứ cần được thêm vào .gitignore.
 
-Thao tác ngừng theo dõi file đã commit
-Trong trường hợp bạn đã lỡ commit các file tạm như bin hoặc .settings lên Git, sau đó đã thêm chúng vào .gitignore, file .gitignore sẽ không hoạt động hồi tố. Để Git ngừng theo dõi chúng mà không xóa file khỏi máy tính, bạn cần thực hiện ba bước sau: Đầu tiên, bạn phải chạy lệnh git rm -r --cached AimsProject/.settings AimsProject/bin ... để xóa các file/folder này khỏi chỉ mục Git (Git Index) nhưng vẫn giữ chúng trên ổ đĩa. Tiếp theo, bạn cần tạo một commit mới bằng lệnh git commit -m "Stop tracking IDE configuration" để ghi nhận hành động ngừng theo dõi này. Cuối cùng, bạn phải git push origin main để đẩy commit mới này lên GitHub, loại bỏ các file tạm đó khỏi kho lưu trữ từ xa.
+Nếu sử dụng những công cụ khác để lập trình Java (như IntelliJ IDEA hoặc VSCode), 
+những đường dẫn nào sẽ được thêm vào .gitignore?
+
+Intellij IDEA: .idea/ workspace.xml, misc.xml, vcs.xml em không chắc chắn vì không sử dụng bao giờ
+VS Code: .vscode/, lib/
+
+Trong trường hợp bạn đã lỡ 
+commit các file tạm lên Git, nhưng sau đó bạn đã thêm chúng vào .gitignore và muốn Git 
+ngừng theo dõi chúng mà không xóa khỏi máy, bạn sẽ cần thực hiện những thao tác nào?
+
+Đầu tiên phải git rm -r --cached + đường dẫn
+Sau đó git commit -m lại , ghi thông điệp để biết hành động vừa làm gì
+Sau đó thì push lại lên github là được

@@ -65,11 +65,20 @@ public class Cart {
     }
 
     public void print() {
-        System.out.println("=== Total items in cart: " + qtyOrdered + " ===");
-        System.out.println("All items in cart ===");
+        if (qtyOrdered == 0) {
+            System.out.println("======================= THE CURRENT CART =======================");
+            System.out.println("Giỏ hàng đang rỗng.");
+            System.out.println("================================================================");
+            return;
+        }
+        System.out.println("======================= THE CURRENT CART =======================");
+        System.out.println("Total items: " + qtyOrdered);
+        
         for (int i = 0; i < qtyOrdered; i++) {
             DigitalVideoDisc item = itemsInCart[i];
-            System.out.println("[Title]: " + item.getTitle() + ", " + "[Cost]: " + item.getCost());
+            System.out.println("- " + item.toString()); 
         }
+        System.out.printf("Subtotal: %.2f$\n", calculateTotalCost()); 
+        System.out.println("================================================================");
     }
 }
