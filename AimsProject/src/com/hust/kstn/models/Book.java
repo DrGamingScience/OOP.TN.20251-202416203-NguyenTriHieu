@@ -36,8 +36,5 @@ public class Book {
 	public int getNumOfTokens() { return numOfTokens; }
 	public List<BookAuthor> getAuthors() { return authors; }
 	
-	public void print()
-	{
-		System.out.println(toString());
-	}
+	
 }
