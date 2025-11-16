@@ -1,5 +1,7 @@
 package com.hust.kstn;
 
+import com.hust.kstn.models.*;
+
 public class Aims {
 
     public static void main(String[] args) {

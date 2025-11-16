@@ -1,4 +1,4 @@
-package com.hust.kstn;
+package com.hust.kstn.models;
 
 public class DigitalVideoDisc {
 	private String title;
@@ -38,7 +38,7 @@ public class DigitalVideoDisc {
 		this.length = 0;
 	}
 	
-	public DigitalVideoDisc (String director, String cateogory, String title, double cost)
+	public DigitalVideoDisc (String director, String category, String title, double cost)
 	{
 		this.title = title;
 		this.category = category;

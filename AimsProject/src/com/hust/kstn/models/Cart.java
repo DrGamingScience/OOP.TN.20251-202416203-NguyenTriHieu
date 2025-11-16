@@ -1,4 +1,4 @@
-package com.hust.kstn;
+package com.hust.kstn.models;
 
 public class Cart {
     private static final int MAX_NUMBER_ORDERED = 20;
