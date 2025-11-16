@@ -1,0 +1,3 @@
+Khi ta thêm addDVD(DigitalVideoDisc ..discs) sẽ xảy ra xung đột nạp chồng
+Chữ ký đó bị trùng với DigitalVideoDisc[] discs khi kiểm tra chữ ký phương thức
+

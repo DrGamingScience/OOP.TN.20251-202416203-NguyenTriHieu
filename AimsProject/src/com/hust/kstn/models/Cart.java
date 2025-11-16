@@ -14,6 +14,20 @@ public class Cart {
             System.out.println("The cart is almost full");
         }
     }
+    
+    public void addDVD(DigitalVideoDisc disc1, DigitalVideoDisc disc2) {
+        addDVD(disc1); 
+        addDVD(disc2);
+    }
+    
+    public void addDVD(DigitalVideoDisc[] discs) {
+        if (discs == null) return;
+        for (DigitalVideoDisc disc : discs) {
+            if (disc != null) {
+                addDVD(disc); 
+            }
+        }
+    }
 
     public void removeDVD(DigitalVideoDisc disc) {
         if (qtyOrdered == 0) {
