@@ -1,0 +1,86 @@
+Tại sao sau khi chạy phương thức swap(s1,s2) thì tên của hai học sinh vẫn không 
+thay đổi? Từ đó, Java là ngôn ngữ truyền tham trị hay truyền tham chiếu?
+
+Lý do hàm không thật sự đổi 2 Student nằm ở việc Java hoạt động: khi ta gọi swap(a1,a2), Java sẽ tạo bản sao của s1, s2 vào phương thức swap, dưới dạng tham số local của hàm là o1, o2. Vậy nên các thao tác gán và gán lại giá trị chỉ thực hiện bên trong hàm, là bản sao còn s1,s2 không bị tác động gì,
+Java là ngôn ngữ truyền tham trị
+
+Bạn làm thế nào để phương thức swap hoạt động (thật sự tráo đổi thông tin của hai 
+đối tượng được truyền vào)?
+
+Để vẫn sử dụng được method swap, ta sẽ cần tác động trực tiếp vào giá trị mà s1, s2 trỏ đến. Bằng cách viết thêm method setter cho ID và fullName, khi truyền bản sao của s1, s2 vào hàm swap là o1 o2, ta sẽ dùng
+hàm swap như sau
+    
+    int tempId = o1.getStudentId();
+    String tempName = o1.getName();
+
+    o1.setStudentId(o2.getStudentId());
+    o1.setName(o2.getName());
+
+    o2.setStudentId(tempId);
+    o2.setName(tempName);
+
+Điều này sẽ không thay đổi nơi biến trỏ tới, mà thay đổi giá trị bên trong địa chỉ được trỏ tới.
+
+Vẽ sơ đồ minh họa cho các vùng nhớ stack và heap trong trường hợp này để chứng 
+minh cách bạn đưa ra đã hoạt động đúng.
+
+Ban đầu khi khởi tạo:
+
+Stack                        Heap   
+
+s1 ------------------------> #100 (1, "A")
+s2 ------------------------> #200 (1, "B")
+
+Gọi hàm swap
+
+Stack                        Heap   
+
+s1 ------------------------> 
+				#100 (1, "A")
+o1 ------------------------> 
+
+
+s2 ------------------------> 
+				#200 (2, "B")
+o2 ------------------------> 
+
+
+int temp1 = o1.getStudentId();
+String temp2 = o1.getName();
+
+Stack
+
+temp1 = 1
+temp2 = A
+....
+
+o1.setStudentId(o2.getStudentId());
+o1.setName(o2.getName());
+
+Stack                         Heap
+
+s1 ------------------------> #100 (2,"B")
+temp1 = 1
+temp2 = "A"
+...
+
+o2.setStudentId(temp1);
+o2.setName(temp2);
+
+Stack                         Heap
+
+s2 -------------------------> #200 (1,"A")
+s1--------------------------> #100 (2,"B")
+
+...
+
+
+
+
+
+
+
+
+
+
+
