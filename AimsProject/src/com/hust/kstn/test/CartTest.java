@@ -26,12 +26,12 @@ public class CartTest {
         anOrder.addDVD(discs);
         
         for(int i = 0; i < 14; i++) {
-            anOrder.addDVD(new DigitalVideoDisc("DVD Filler " + (i+1)));
+            anOrder.addDVD(new DigitalVideoDisc("DVD Filler " + (i+1),"Anime","Baka",0,0.0));
         }
-        anOrder.addDVD(new DigitalVideoDisc("OverLimit DVD"));
+        anOrder.addDVD(new DigitalVideoDisc("OverLimit DVD", "Anime","SybauGang",0,0.0));
         
         //Xoa san pham khong ton tai
-        anOrder.removeDVD(new DigitalVideoDisc("Lion pizza chicken"));
+        anOrder.removeDVD(new DigitalVideoDisc("OverLimit DVD1", "Anime","SybauGang",0,0.0));
         
         //In thong tin gio hang
         anOrder.print();
