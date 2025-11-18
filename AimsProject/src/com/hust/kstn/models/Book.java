@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Book extends Media {
 	private List<BookAuthor> authors = new ArrayList<>();
 	int numOfTokens;
-	
+		
 	public String toString() {
 		 return super.toString() 
 		 + "[" + this.numOfTokens + "]"

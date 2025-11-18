@@ -17,12 +17,7 @@ public class DigitalVideoDisc extends Disc {
 	public DigitalVideoDisc(String title, String category, String director, int length, double cost) {
        super(title,cost,category);
        this.director = director;
-       this.length = length;
-
-
-
-
-      
+       this.length = length;      
    }
 	
 	public String toString() {
